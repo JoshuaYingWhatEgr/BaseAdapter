@@ -38,7 +38,7 @@ public class BaseRecyclerHolder extends RecyclerView.ViewHolder {
     /**
      * 根据id设置textview
      */
-    public void setText(int resourceId, String content) {
+    public void setTextView(int resourceId, String content) {
         textView = getView(resourceId);
         textView.setText(content);
     }
@@ -46,7 +46,7 @@ public class BaseRecyclerHolder extends RecyclerView.ViewHolder {
     /**
      * 通过getText设置当前控件的点击事件
      */
-    public TextView getText() {
+    public TextView getTextView() {
         if (textView != null) {
             return textView;
         }

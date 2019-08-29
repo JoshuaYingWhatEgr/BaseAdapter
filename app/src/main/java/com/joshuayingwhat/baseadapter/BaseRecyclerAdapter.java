@@ -81,11 +81,11 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
                 .inflate(resourceLayout, parent, false));
     }
 
-    abstract void convert(BaseRecyclerHolder holder, int position, boolean isScrolling);
+    abstract void convert(BaseRecyclerHolder holder, T datas, int position, boolean isScrolling);
 
     @Override
     public void onBindViewHolder(@NonNull final BaseRecyclerHolder holder, final int position) {
-        convert(holder, position, isScrolling);
+        convert(holder, resDatas.get(position), position, isScrolling);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
