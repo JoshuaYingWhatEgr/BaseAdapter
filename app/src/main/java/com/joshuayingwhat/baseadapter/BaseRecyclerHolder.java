@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class BaseRecyclerHolder extends RecyclerView.ViewHolder {
 
     private SparseArray<View> mViews;
+    private TextView textView;
 
     public BaseRecyclerHolder(@NonNull View itemView) {
         super(itemView);
@@ -38,8 +39,18 @@ public class BaseRecyclerHolder extends RecyclerView.ViewHolder {
      * 根据id设置textview
      */
     public void setText(int resourceId, String content) {
-        TextView textView = getView(resourceId);
+        textView = getView(resourceId);
         textView.setText(content);
+    }
+
+    /**
+     * 通过getText设置当前控件的点击事件
+     */
+    public TextView getText() {
+        if (textView != null) {
+            return textView;
+        }
+        return null;
     }
 
     /**

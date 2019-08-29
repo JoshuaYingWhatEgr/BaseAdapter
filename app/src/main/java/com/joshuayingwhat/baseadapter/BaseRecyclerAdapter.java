@@ -2,7 +2,9 @@ package com.joshuayingwhat.baseadapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +36,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
     private boolean isScrolling;
 
     private final Context viewContext;
+    private onSetClickListener onClickListener;
 
     public BaseRecyclerAdapter(Collection<T> resDatas, RecyclerView recyclerView, int resourceLayout) {
         if (resDatas == null) {
@@ -78,8 +81,24 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
                 .inflate(resourceLayout, parent, false));
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull BaseRecyclerHolder holder, int position) {
+    abstract void convert(BaseRecyclerHolder holder, int position, boolean isScrolling);
 
+    @Override
+    public void onBindViewHolder(@NonNull final BaseRecyclerHolder holder, final int position) {
+        convert(holder, position, isScrolling);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickListener.setListener(holder, position);
+            }
+        });
+    }
+
+    public void setOnClickListener(onSetClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
+
+    private interface onSetClickListener {
+        void setListener(BaseRecyclerHolder holder, int position);
     }
 }
