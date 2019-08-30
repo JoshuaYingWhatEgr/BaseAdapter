@@ -7,9 +7,9 @@ import java.util.Collection;
 /**
  * @author joshuayingwhat
  */
-public class WidgetAdapter extends BaseRecyclerAdapter<Widget> {
+class WidgetAdapter extends BaseRecyclerAdapter<Widget> {
 
-    public WidgetAdapter(Collection<Widget> resDatas, RecyclerView recyclerView, int resourceLayout) {
+    WidgetAdapter(Collection<Widget> resDatas, RecyclerView recyclerView, int resourceLayout) {
         super(resDatas, recyclerView, resourceLayout);
     }
 
